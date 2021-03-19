@@ -1,0 +1,126 @@
+.TrendingSection{
+    position: relative;
+    @include csize(100%,auto);
+    padding: 0 0 45px 0;
+    @include user-select(none);
+    .section_title{
+        padding: 16px 12px 16px 12px;
+        margin:0;
+        text-align: center;
+        font-size: 30px;
+        letter-spacing: 1px;
+        font-weight: 500;
+        color: $midnight-blue-900;
+        @include text-transform(capitalize);
+    }
+    .trending_cols_container{
+        margin: 0 auto 24px auto;
+        @include fsize;
+        @include cmax-size(1080px,auto);
+        display: grid;
+        .trending_col_box{
+            display: inline-block;
+            position:relative;
+            @include csize(100%,auto);
+            padding: 12px;
+            a{
+                display: block;
+                padding: 8px;
+                margin: 0;
+                text-decoration: none;
+                background-color: #EAF3F8;
+                border-radius:7px;
+                color: $midnight-blue-900;
+                font-weight: 500;
+                border: 1px solid hsla(212, 29%, 13%, 0.065);
+                @include box-shadow(0px,0px,14px,-5px,rgba(0,0,0,0.5));
+                @include easings(200ms);
+                &:hover{
+                    background-color: #4563F7;
+                    .grid_items_block{
+                        .singer_name{
+                            color: #EAF3F8;
+                        }
+                        .views_title{
+                            color: #EAF3F8;
+                        }
+                        .views_nums{
+                            color: #EAF3F8;
+                        }
+                    }
+                }
+                .grid_items_block{
+                    position: relative;
+                    @include csize(100%,auto);
+                    display: inline-block;
+                    .grid_item_img{
+                        display: flex;
+                        position: relative;
+                        @include csize(100%,auto);
+                        border-radius: 7px;
+                        img{
+                            object-fit: cover;
+                            @include csize(100%,auto);
+                            position: relative;
+                            display: inline-block;
+                            border-radius: 7px;
+                        }
+                    }
+                    .singer_name{
+                        display: block;
+                        padding: 6px 8px 4px 10px;
+                        font-size: 16px;
+                        color: #262335;
+                        letter-spacing: 1px;
+                        font-weight: 500;
+                        margin: 0;
+                        @include easings(200ms);
+                    }
+                    .views_title{
+                        padding: 6px 0 6px 10px;
+                        margin: 0;
+                        color: #262335;
+                        letter-spacing: 1px;
+                        font-weight: 500;
+                        @include easings(200ms);
+                    }
+                    .views_nums{
+                        padding: 6px 6px 6px 0;
+                        margin: 0;
+                        color: #262335;
+                        font-weight: 500;
+                        letter-spacing: 1px;
+                        @include easings(200ms);
+                    }
+                }
+            }
+        }
+    }
+    .more_channels{
+        position: relative;
+        @include csize(100%,auto);
+        margin: auto;
+        padding: 8px;
+        text-align: center;
+        a{
+            background-color: hsla(230, 92%, 62%, 1);
+            display: inline-block;
+            text-align: center;
+            color: #EAF3F8;
+            margin: 0;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 18px;
+            border-radius: 7px;
+            letter-spacing: 1px;
+            font-weight: 500;
+            @include text-transform(capitalize);
+            @include csize(auto,auto);
+            @include easings(200ms);
+            &:hover{
+                background-color: #EAF3F8;
+                color: hsla(230, 92%, 62%, 1);
+            }
+        }
+    }
+}

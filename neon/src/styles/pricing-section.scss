@@ -1,0 +1,294 @@
+.PricingSection{
+  position: relative;
+  @include csize(100%,auto);
+  padding: 12px;
+  .pricings_title{
+    position: relative;
+    padding: 18px;
+    font-size: 30px;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #17202a;
+    @include text-transform(uppercase);
+  }
+  @include phone(400px){
+    .pricings_title{
+      font-size: 24px;
+    }
+  }
+  .pricing_grids{
+    position: relative;
+    @include csize(100%,auto);
+    @include cmax-size(1080px,auto);
+    margin: auto;
+    display: grid;
+    %common_styles{
+      letter-spacing: 1px;
+      font-size: 22px;
+      font-weight: 500;
+      text-align: center;
+    }
+    .pricing_basic_container{
+      @include fsize;
+      padding: 16px;
+      border-radius: 1px;
+      .basic_box{
+        position: relative;
+        display: inline-block;
+        padding: 16px;
+        @include csize(100%,auto);
+        border-radius: 7px;
+        border: 1px solid hsla(212, 29%, 13%, 0.15);
+        .basic_box_titles{
+          position: relative;
+          padding: 0 0 16px 0;
+          margin: 0 0 16px 0;
+          @include csize(100%,auto);
+          border-bottom: 1px solid hsla(212, 29%, 13%, 0.15);
+          .basic_title{
+            padding: 8px;
+            margin: 0;
+            display: block;
+            @extend %common_styles;
+            @include text-transform(uppercase);
+          }
+          .monthly_payment{
+            padding: 4px;
+            margin: 0 0 16px 0;
+            display: block;
+            @extend %common_styles;
+            font-size: 32px;
+            @include text-transform(uppercase);
+            span{
+              font-size: 14px;
+              @include text-transform(lowercase);
+            }
+          }
+          @include phone(600px){
+            .monthly_payment{
+              font-size: 20px;
+            }
+          }
+          .basic_signup{
+            background-color: #4563F7;
+            display: block;
+            padding: 8px;
+            margin: 0;
+            color: #EAF3F8;
+            text-decoration: none;
+            @extend %common_styles;
+            @include text-transform(uppercase);
+            @include user-select(none);
+            border-radius: 7px;
+            @include easings(200ms);
+            border: 1px solid hsla(212, 29%, 13%, 0);
+            &:hover{
+              background-color: #EAF3F8;
+              color: #17202a;
+              border: 1px solid hsla(212, 29%, 13%, 0.2);
+            }
+          }
+        }
+        .basic_box_plans{
+          padding: 12px 0 0 0;
+          position: relative;
+          @include csize(100%,auto);
+          ul{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            li{
+              display: block;
+              padding: 8px;
+              margin: 0;
+              font-size: 18px;
+              letter-spacing: 1px;
+              color: #17202a;
+              span{ 
+                font-weight: 700;
+                color: #4563F7;
+                padding: 0 8px 0 0;
+                @include user-select(none);
+              }
+            }
+          }
+        }
+      }
+    }
+    .pricing_pro_container{
+      @include fsize;
+      padding: 16px;
+      border-radius: 1px;
+      .pro_box{
+        position: relative;
+        display: inline-block;
+        padding: 16px;
+        @include csize(100%,auto);
+        border-radius: 7px;
+        border: 1px solid hsla(212, 29%, 13%, 0.15);
+        .pro_box_titles{
+          position: relative;
+          padding: 0 0 16px 0;
+          margin: 0 0 16px 0;
+          @include csize(100%,auto);
+          border-bottom: 1px solid hsla(212, 29%, 13%, 0.15);
+          .pro_title{
+            padding: 8px;
+            margin: 0 0 0 0;
+            display: block;
+            @extend %common_styles;
+            @include text-transform(uppercase);
+          }
+          .monthly_payment{
+            padding: 4px;
+            margin: 0 0 16px 0;
+            display: block;
+            @extend %common_styles;
+            font-size: 32px;
+            @include text-transform(uppercase);
+            span{
+              font-size: 14px;
+              @include text-transform(lowercase);
+            }
+          }
+          @include phone(600px){
+            .monthly_payment{
+              font-size: 20px;
+            }
+          }
+          .pro_signup{
+            background-color: #4563F7;
+            display: block;
+            padding: 8px;
+            margin: 0;
+            color: #EAF3F8;
+            text-decoration: none;
+            @extend %common_styles;
+            @include user-select(none);
+            @include text-transform(uppercase);
+            border-radius: 7px;
+            @include easings(200ms);
+            border: 1px solid hsla(212, 29%, 13%, 0);
+            &:hover{
+              background-color: #EAF3F8;
+              color: #17202a;
+              border: 1px solid hsla(212, 29%, 13%, 0.2);
+            }
+          }
+        }
+        .pro_box_plans{
+          padding: 12px 0 0 0;
+          position: relative;
+          @include csize(100%,auto);
+          ul{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            li{
+              display: block;
+              padding: 8px;
+              margin: 0;
+              font-size: 18px;
+              letter-spacing: 1px;
+              color: #17202a;
+              span{ 
+                font-weight: 700;
+                color: #4563F7;
+                padding: 0 8px 0 0;
+                @include user-select(none);
+              }
+            }
+          }
+        }
+      }
+    }
+    .pricing_premimum_container{
+      @include fsize;
+      padding: 16px;
+      border-radius: 1px;
+      .premimum_box{
+        position: relative;
+        display: inline-block;
+        padding: 16px;
+        @include csize(100%,auto);
+        border-radius: 7px;
+        border: 1px solid hsla(212, 29%, 13%, 0.15);
+        .premimum_box_titles{
+          position: relative;
+          padding: 0 0 16px 0;
+          margin: 0 0 16px 0;
+          @include csize(100%,auto);
+          border-bottom: 1px solid hsla(212, 29%, 13%, 0.15);
+          .premimum_title{
+            padding: 8px;
+            margin: 0 0 0 0;
+            display: block;
+            @extend %common_styles;
+            @include text-transform(uppercase);
+          }
+          .monthly_payment{
+            padding: 4px;
+            margin: 0 0 16px 0;
+            display: block;
+            @extend %common_styles;
+            font-size: 32px;
+            @include text-transform(uppercase);
+            span{
+              font-size: 14px;
+              @include text-transform(lowercase);
+            }
+          }
+          @include phone(600px){
+            .monthly_payment{
+              font-size: 20px;
+            }
+          }
+          .premimum_signup{
+            background-color: #4563F7;
+            display: block;
+            padding: 8px;
+            margin: 0;
+            color: #EAF3F8;
+            text-decoration: none;
+            @extend %common_styles;
+            @include user-select(none);
+            @include text-transform(uppercase);
+            border-radius: 7px;
+            @include easings(200ms);
+            border: 1px solid hsla(212, 29%, 13%, 0);
+            &:hover{
+              background-color: #EAF3F8;
+              color: #17202a;
+              border: 1px solid hsla(212, 29%, 13%, 0.2);
+            }
+          }
+        }
+        .premimum_box_plans{
+          padding: 12px 0 0 0;
+          position: relative;
+          @include csize(100%,auto);
+          ul{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            li{
+              display: block;
+              padding: 8px;
+              margin: 0;
+              font-size: 18px;
+              letter-spacing: 1px;
+              color: #17202a;
+              span{ 
+                font-weight: 700;
+                color: #4563F7;
+                padding: 0 8px 0 0;
+                @include user-select(none);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

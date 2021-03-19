@@ -1,0 +1,251 @@
+.LoginForm{
+  padding: 0 0 0 0;
+  position: relative;
+  @include fsize;
+  .form_background_layer{
+    background-color: hsla(212, 29%, 13%, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    @include fsize;
+    img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      @include fsize;
+    }
+  }
+  .loginForm_container{
+    @include fsize;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 12px 12px 12px;
+    @keyframes LoginFormFade {
+      from{
+        opacity: 0.5;
+        @include backblur(0);
+        @include scale(0.8,0.8);
+      }
+      to{
+        opacity: 1;
+        @include backblur(15px);
+        @include scale(1,1);
+      }
+    }
+    .loginFormBox{
+      background-color: hsla(201, 50%, 95%, 0.65);
+      padding: 12px;
+      opacity: 1;
+      position: relative;
+      @include backblur(15px);
+      @include csize(100%,300px);
+      @include cmax-size(600px,auto);
+      display: grid;
+      grid-template-rows: 45px auto;
+      border-radius: 4px;
+      @include scale(1,1);
+      @include animate(LoginFormFade,500ms,1);
+      @include box-shadow(0px,0px,35px,-11px,hsla(212, 29%, 13%, 0.6));
+      .loginForm_header{
+        background-color: hsla(201, 50%, 95%, 0.3);
+        padding: 6px;
+        position: relative;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        border-radius: 7px;
+        @include user-select(none);
+        @include fsize;
+        %linksStyles{
+          display: block;
+          @include fsize;
+          position: relative;
+          text-decoration: none;
+        }
+        %loginlinkStyles{
+          background-color: transparent;
+          position: relative;
+          @include fsize;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 18px;
+          letter-spacing: 1px;
+          font-weight: 700;
+          color: $midnight-blue-900;
+          @include easings(200ms);
+          border-radius: 4px;
+        }
+        .loginlink_container{
+          position: relative;
+          @include fsize;
+          a{
+            @extend %linksStyles;
+            &:hover{
+              .loginlink{
+                background-color: #4563F7;
+                color: #EAF3F8;
+                svg{
+                  *{
+                    fill: #EAF3F8;
+                  }
+                }
+              }
+            }
+            .loginlink{
+              @extend %loginlinkStyles;
+              svg{
+                @include csize(20px,20px);
+                position: relative;
+                margin: 0 8px 0 0;
+                *{
+                  fill: #4563F7;
+                  @include easings(200ms);
+                }
+              }
+            }
+          }
+        }
+        .signuplink_container{
+          position: relative;
+          @include fsize;
+          a{
+            @extend %linksStyles;
+            &:hover{
+              .signuplink{
+                background-color: #4563F7;
+                color: #EAF3F8;
+                svg{
+                  *{
+                    fill: #EAF3F8;
+                  }
+                }
+              }
+            }
+            .signuplink{
+              @extend %loginlinkStyles;
+              svg{
+                @include csize(20px,20px);
+                position: relative;
+                margin: 0 8px 0 0;
+                *{
+                  fill: #4563F7;
+                  @include easings(200ms);
+                }
+              }
+            }
+          }
+        }
+      }
+      form{
+        position: relative;
+        @include csize(100%,auto);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        .login_form{
+          position: relative;
+          @include csize(100%,auto);
+          @include cmax-size(300px,auto);
+          margin: 12px 0 0 0;
+          %InputsContainerStyles{
+            background-color: hsla(201, 50%, 95%, 0.5);
+            position: relative;
+            @include csize(100%,50px);
+            border: 1px solid hsla(212, 29%, 13%, 0.15);
+            border-radius: 7px;
+          }
+          %LablesStyles{
+            @include csize(auto,auto);
+            position: absolute;
+            font-size: 15px;
+            left: 7px;
+            letter-spacing: 1px;
+            font-weight: 400;
+            color: hsla(212, 29%, 13%, 0.85);
+            @include easings(100ms);
+          }
+          %InputsStyles{
+            background-color: transparent;
+            position: absolute;
+            font-size: 16px;
+            letter-spacing: 1px;
+            @include fsize;
+            padding: 20px 7px 7px 7px;
+            color: $midnight-blue-900;
+            font-weight: 500;
+            border: none;
+            border-radius: 7px;
+            @include box-shadow(0px,0px,12px,-8px,hsla(212, 29%, 13%, 0.5));
+          }
+          .username_input{
+            @extend %InputsContainerStyles;
+            #username{
+              @extend %LablesStyles;
+            }
+            .username{
+              @extend %InputsStyles;
+            }
+          }
+          .password_container{
+            margin: 12px 0 12px 0;
+            @extend %InputsContainerStyles;
+            #password{
+              @extend %LablesStyles;
+            }
+            .password{
+              @extend %InputsStyles;
+              &::-ms-reveal, &::-ms-clear{
+                display: none;
+              }
+            }
+          }
+          .btnLogin_container{
+            padding: 0;
+            margin: 0;
+            border-radius: 7px;
+            position: relative;
+            @include csize(100%,auto);
+            input{
+              padding: 8px;
+              margin: 0;
+              background-color: #4563F7;
+              font-size: 18px;
+              letter-spacing: 1px;
+              color: #EAF3F8;
+              font-weight: 500;
+              border: none;
+              @include box-shadow(0px,0px,12px,-8px,hsla(212, 29%, 13%, 0.5));
+              border-radius: 7px;
+              cursor: pointer;
+              @include easings(200ms);
+              &:hover{
+                background-color: #EAF3F8;
+                color: #4563F7;
+              }
+            }
+          }
+          .forgotten_account{
+            padding: 4px 12px 4px 12px;
+            display: block;
+            margin: 6px 0 0 0;
+            font-size: 15px;
+            letter-spacing: 1px;
+            font-weight: 500;
+            color: $midnight-blue-900;
+            @include text-transform(capitalize);
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+  @include phone(700px){
+    .loginForm_container{
+      padding: 60px 12px 12px 12px;
+    }
+  }
+}
