@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>BHRRN Game</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/media.css">
+    <script src="js/axios.js"></script>
+    <script src="js/vue_js.js"></script>
+  </head>
+  <body>
+
+    <!--Header/Navigation-->
+    <header class="navigation" id="nav_styles" ref="media_width">
+      <nav class="nav">
+        <div @click="show_media_menu" class="username_profile">
+          <div class="profile_imgSample">
+            <img src="images/user.png" alt="Profile Image">
+          </div>
+          <div class="username">
+            <span>{{name}}</span>
+          </div>
+        </div>
+        <div class="gamer_level">
+          <div class="level"><span>Level: {{level}}</span></div>
+          <div class="experience"><span>XP: {{xp}}/{{xpCap}}</span></div>
+        </div>
+        <div class="gamer_strength">
+          <div class="hp"><span>HP: {{hp}}/{{maxHp}}</span></div>
+          <div class="strength"><span>Strength: {{str}}</span></div>
+        </div>
+        <div class="gamer_energy">
+          <div class="energy"><span>Energy: {{energy}}/{{maxEnergy}}</span></div>
+          <div class="dexterity"><span>Dexterity: {{dex}}</span></div>
+        </div>
+        <div class="quest_details">
+          <div class="active_quests"><span>active quests: {{activeQ.length}}</span></div>
+          <div class="completed_quests"><span>completed: {{completedQ.length}}</span></div>
+        </div>
+        <div class="menu_toggle">
+          <div class="toggle_container" @click="toggle_menu">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 360.44">
+              <rect x="69.67" :width="rect_top" height="45" rx="22.5" style="fill: #008cd0"/>
+              <rect y="157.72" :x="rect_x" :width="rect_mid" height="45" rx="22.5" style="fill: #008cd0"/>
+              <rect x="69.67" :width="rect_down" y="315.44" height="45" rx="22.5" style="fill: #008cd0"/>
+            </svg>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!--Navigation List-->
+    <div class="navigation_list" id="menu_list" :style="{right:menu_right+'%',opacity:menu_opacity}">
+      <div class="menu_list">
+
+        <!--List of Inventories-->
+        <div class="inventories_list">
+          <h4 class="thisList_header">Inventory</h4>
+          <ul>
+            <li v-for="item in inventory">{{item.name}}
+              <span v-if="item.equipped == true" style="float: right;">Equipped</span>
+              <span v-else-if="item.equipped == false" style="float: right;">Unequipped</span>
+              <span v-else style="float: right;">Quantity: {{item.qty}}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!--List of Quests-->
+        <div class="quests_list">
+          <h4 class="thisList_header">Quests</h4>
+          <ul>
+            <li v-for="aquest in active_quests">{{aquest.name}}<span style="color:rgb(146, 68, 23); float: right;">Active</span></li>
+            <li v-for="cquest in completed_quests">{{cquest.name}}<span style="color:rgb(23, 146, 60); float: right;">Completed</span></li>
+          </ul>
+        </div>
+
+        <!--Instruction window toggle container-->
+        <div class="instruction_container" @click="show_instructions">
+          <h4>Game Instructions</h4>
+        </div>
+      </div>
+    </div>
+
+    <!--Game Instruction Big Window-->
+    <div class="game_instructions" id="instruction_js" v-if="show_instructions">
+      <div class="instructions">
+        <h4 class="window_header">Game Instructions</h4>
+        <p class="instruction_content">
+          Welcome to Project Isle!
+          <br/><br/>
+          How to play:
+          <br/>
+          This is a text based adventure game that uses an typed input command to move, gather items, fight, and speak.
+          <br/>
+          The <span style="color: #a51e1e">North</span>, <span style="color: #a51e1e">South</span>, <span style="color: #a51e1e">East</span>, and <span style="color: #a51e1e">West</span> commands will move your character in those directions.<br/>
+          The <span style="color: #a51e1e">Look</span> command will help you see if there is any details that you missed in certain areas.<br/>
+          The <span style="color: #a51e1e">Take</span> command will allow you to pick up items in the area. You are also able to check your <span style="color: #a51e1e">Inventory</span> and <span style="color: #a51e1e">Use items</span>.
+          <br/><br/>
+          Hope you enjoy playing!
+        </p>
+        <div class="close_instruction">
+          <button role="button" @click="close_instructions">Continue</button>
+        </div>
+      </div>
+    </div>
+
+    <!--Game Textbox & Interface-->
+    <div id="chat_text" ref="game_interface" class="game_interface">
+      <div ref="interface" class="interface">
+        <div v-for="(item, key) in arrdesc">
+          <!--Robot Chat Container-->
+          <div v-if="currentLocation.desc"  class="chat_body_robot">
+            <div class="robot_chat message">
+              {{item}}<br/>
+            </div>
+          </div>
+          <!--User Chat Container-->
+          <div v-if="currentLocation.input" class="chat_body_user">
+            <div class="user_chat message">
+              {{arrinput[key]}}<br/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat_textbox_container">
+        <input v-model="userInput" v-on:keydown.enter="performAction()" autofocus name="chat" placeholder="Type Your Command" :style="{height:text_chat_height+'px',maxHeight:text_chat_height+'px'}" rows="8" cols="80" />
+      </div>
+    </div>
+
+    <!--Media Menu-->
+    <div id="media_menu_list" class="media_menu_list" :style="{top:top+'px',opacity:opacity,zIndex:z_index}">
+      <ul>
+        <li>Level: {{level}}</li><li>
+        XP: {{xp}}/{{xpCap}}</li><li>
+        HP: {{hp}}/{{maxHp}}</li><li>
+        Strength: {{str}}</li><li>
+        Energy: {{energy}}/{{maxEnergy}}</li><li>
+        Dexterity: {{dex}}</li><li>
+        Active Quests: {{activeQ.length}}</li><li>
+        Completed Quests: {{completedQ.length}}</li>
+      </ul>
+    </div>
+
+
+    <script src="js/index.js"></script>
+  </body>
+</html>
